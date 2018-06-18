@@ -8,10 +8,7 @@ import com.dcits.schedulejob.utils.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by wangxueming on 2018/6/18.
@@ -32,13 +29,13 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
         System.out.println(sb.toString());
     }
     @Override
-    public int deleteByPrimaryKey(Long jobId) {
+    public int deleteByPrimaryKey(String jobId) {
         int returnValue = 0;//返回删除的记录数
         List<String> records = FileUtils.getFileContent(dbFile);
         StringBuffer content = new StringBuffer();
         for(String s : records) {
-            Long id = Long.parseLong(s.split(",")[0].trim());
-            if(id!=jobId) {
+            String id = s.split(",")[0].trim();
+            if(!id.equals(jobId)) {
                 content.append(s);
                 content.append(Constants.NEWLINE);
             } else {
@@ -52,31 +49,47 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
     @Override
     public int insert(ScheduleJob record) {
         List<String> records = FileUtils.getFileContent(dbFile);
-        Set<Long> jobIds = this.getJobIds(records);//得到所有记录的主键
+        String jobId = UUID.randomUUID().toString().replace("-", "");
+        record.setJobId(jobId);
+        Set<String> jobIds = this.getJobIds(records);//得到所有记录的主键
         if(jobIds.contains(record.getJobId())) {
             return 0;
         }
         records.add(record.domain2String());
+        StringBuffer content = new StringBuffer();
+        for(String s : records) {
+            content.append(s);
+            content.append(Constants.NEWLINE);
+        }
+        FileUtils.write2File(dbFile, content.toString(), Constants.FILEENCODING);
         return 1;
     }
 
     @Override
     public int insertSelective(ScheduleJob record) {
         List<String> records = FileUtils.getFileContent(dbFile);
-        Set<Long> jobIds = this.getJobIds(records);//得到所有记录的主键
+        String jobId = UUID.randomUUID().toString().replace("-", "");
+        record.setJobId(jobId);
+        Set<String> jobIds = this.getJobIds(records);//得到所有记录的主键
         if(jobIds.contains(record.getJobId())) {
             return 0;
         }
         records.add(record.domain2String());
+        StringBuffer content = new StringBuffer();
+        for(String s : records) {
+            content.append(s);
+            content.append(Constants.NEWLINE);
+        }
+        FileUtils.write2File(dbFile, content.toString(), Constants.FILEENCODING);
         return 1;
     }
 
     @Override
-    public ScheduleJob selectByPrimaryKey(Long jobId) {
+    public ScheduleJob selectByPrimaryKey(String jobId) {
         List<String> records = FileUtils.getFileContent(dbFile);
         for(String s : records) {
-            Long id = Long.parseLong(s.split(",")[0].trim());
-            if(id==jobId) {
+            String id = s.split(",")[0].trim();
+            if(id.equals(jobId)) {
                return StringUtils.string2Domain(s);
             }
         }
@@ -86,12 +99,12 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
     @Override
     public int updateByPrimaryKeySelective(ScheduleJob record) {
         int returnValue = 0;
-        Long jobId = record.getJobId();
+        String jobId = record.getJobId();
         List<String> records = FileUtils.getFileContent(dbFile);
         StringBuffer content = new StringBuffer();
         for(String s : records) {
-            Long id = Long.parseLong(s.split(",")[0].trim());
-            if(id!=jobId) {
+            String id = s.split(",")[0].trim();
+            if(!id.equals(jobId)) {
                 content.append(s);
                 content.append(Constants.NEWLINE);
             } else {
@@ -112,19 +125,19 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
                 returnValue ++ ;
             }
         }
-
+        FileUtils.write2File(dbFile, content.toString(), Constants.FILEENCODING);
         return returnValue;
     }
 
     @Override
     public int updateByPrimaryKey(ScheduleJob record) {
         int returnValue = 0;
-        Long jobId = record.getJobId();
+        String jobId = record.getJobId();
         List<String> records = FileUtils.getFileContent(dbFile);
         StringBuffer content = new StringBuffer();
         for(String s : records) {
-            Long id = Long.parseLong(s.split(",")[0].trim());
-            if(id!=jobId) {
+            String id = s.split(",")[0].trim();
+            if(!id.equals(jobId)) {
                 content.append(s);
                 content.append(Constants.NEWLINE);
             } else {
@@ -145,7 +158,7 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
                 returnValue ++ ;
             }
         }
-
+        FileUtils.write2File(dbFile, content.toString(), Constants.FILEENCODING);
         return returnValue;
     }
 
@@ -159,10 +172,10 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
         return jobs;
     }
 
-    private Set<Long> getJobIds(List<String> records) {
-        Set<Long> jobIds = new HashSet<Long>();
+    private Set<String> getJobIds(List<String> records) {
+        Set<String> jobIds = new HashSet<String>();
         for(String s : records) {
-            Long id = Long.parseLong(s.split(",")[0].trim());
+            String id = s.split(",")[0].trim();
             jobIds.add(id);
         }
         return jobIds;

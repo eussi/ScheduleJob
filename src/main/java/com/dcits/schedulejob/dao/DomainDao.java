@@ -8,13 +8,13 @@ import java.util.List;
  * Created by wangxueming on 2018/6/18.
  */
 public interface DomainDao<T> {
-    int deleteByPrimaryKey(Long jobId);
+    int deleteByPrimaryKey(String jobId);
 
     int insert(T record);
 
     int insertSelective(T record);
 
-    T selectByPrimaryKey(Long jobId);
+    T selectByPrimaryKey(String jobId);
 
     int updateByPrimaryKeySelective(T record);
 

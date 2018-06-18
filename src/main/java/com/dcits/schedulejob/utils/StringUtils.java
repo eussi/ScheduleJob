@@ -18,7 +18,7 @@ public class StringUtils {
             return null;
         }
         ScheduleJob scheduleJob = new ScheduleJob();
-        scheduleJob.setJobId(Long.parseLong(fields[0].trim()));
+        scheduleJob.setJobId(fields[0].trim());
         if(!"null".equals(fields[1].trim()))
             scheduleJob.setCreateTime(strToDate(fields[1].trim()));
         if(!"null".equals(fields[2].trim()))
@@ -50,5 +50,11 @@ public class StringUtils {
     public static String dateToStr(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
+    }
+
+    public static boolean isNotBlank(String str) {
+        if(str!=null && !"".equals(str) && !"null".equals(str))
+            return true;
+        return false;
     }
 }
