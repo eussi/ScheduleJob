@@ -53,6 +53,7 @@ public class StringUtils {
     }
 
     public static boolean isNotBlank(String str) {
+        str = str.trim();
         if(str!=null && !"".equals(str) && !"null".equals(str))
             return true;
         return false;

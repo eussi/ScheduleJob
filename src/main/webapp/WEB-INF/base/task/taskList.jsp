@@ -52,7 +52,7 @@
 								<td>描述</td>
 								<td>是否同步</td>
 								<td>类路径</td>
-								<td>SPRING ID</td>
+								<td>Shell脚本</td>
 								<td>方法名</td>
 								<td>更新CRON</td>
 								<td>操作</td>
@@ -71,7 +71,7 @@
 									<td>${job.isConcurrent eq 1?"是":"否" }</td>
 									<td>${job.beanClass eq "null" ? "" : job.beanClass}</td>
 									<td>${job.springId  eq "null" ? "" : job.springId}</td>
-									<td>${job.methodName }</td>
+									<td>${job.methodName  eq "null" ? "" : job.methodName }</td>
 									<td><span class="am-badge am-badge-success"
 										style="width: 80px; display: block"><a
 											href="javascript:;"

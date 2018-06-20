@@ -21,13 +21,4 @@ public class TaskTest {
 	public void run1() {
         System.out.println("任务运行中：" + " run1......................................" + (new Date()));
 	}
-	
-	public static void main(String[] args) {
-		String c=null;
-	    Map<String, Charset> charsets = Charset.availableCharsets();
-	    for (Map.Entry<String, Charset> entry : charsets.entrySet()) {
-	       System.out.println(entry.getKey());
-	    }
-
-	}
 }

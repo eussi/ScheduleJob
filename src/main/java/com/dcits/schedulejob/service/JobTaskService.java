@@ -37,6 +37,7 @@ public class JobTaskService {
 
     public void addTask(ScheduleJob job) {
         job.setCreateTime(new Date());
+        job.setUpdateTime(new Date());
         domainDao.insertSelective(job);
     }
 

@@ -181,13 +181,25 @@ public class ScheduleJob {
         sb.append(Constants.COMMA);
         sb.append(this.getDescription());
         sb.append(Constants.COMMA);
-        sb.append(this.getBeanClass());
+        if(StringUtils.isNotBlank(this.getBeanClass())) {
+            sb.append(this.getBeanClass());
+        } else {
+            sb.append("null");
+        }
         sb.append(Constants.COMMA);
         sb.append(this.getIsConcurrent());
         sb.append(Constants.COMMA);
-        sb.append(this.getSpringId());
+        if(StringUtils.isNotBlank(this.getSpringId())) {
+            sb.append(this.getSpringId());
+        } else {
+            sb.append("null");
+        }
         sb.append(Constants.COMMA);
-        sb.append(this.getMethodName());
+        if(StringUtils.isNotBlank(this.getMethodName())) {
+            sb.append(this.getMethodName());
+        } else {
+            sb.append("null");
+        }
         return sb.toString();
     }
 }

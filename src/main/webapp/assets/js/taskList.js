@@ -20,7 +20,8 @@ function validateAdd() {
 		alert('类路径和spring id至少填写一个');
 		return false;
 	}
-	if ($.trim($('#methodName').val()) == '') {
+	if ($.trim($('#methodName').val()) == ''
+            &&  $.trim($('#beanClass').val()) != ''){
 		$('#methodName').focus();
 		alert('方法名不能为空！');
 		return false;

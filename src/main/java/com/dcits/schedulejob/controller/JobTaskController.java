@@ -55,9 +55,11 @@ public class JobTaskController {
 			return retObj;
 		}
 		Object obj = null;
+        boolean isShell = false;
 		try {
 			if (StringUtils.isNotBlank(scheduleJob.getSpringId())) {
-				obj = SpringUtils.getBean(scheduleJob.getSpringId());
+				//obj = SpringUtils.getBean(scheduleJob.getSpringId());
+                isShell = true;
 			} else {
 				Class clazz = Class.forName(scheduleJob.getBeanClass());
 				obj = clazz.newInstance();
@@ -65,22 +67,24 @@ public class JobTaskController {
 		} catch (Exception e) {
 			// do nothing.........
 		}
-		if (obj == null) {
-			retObj.setMsg("未找到目标类！");
-			return retObj;
-		} else {
-			Class clazz = obj.getClass();
-			Method method = null;
-			try {
-				method = clazz.getMethod(scheduleJob.getMethodName(), null);
-			} catch (Exception e) {
-				// do nothing.....
-			}
-			if (method == null) {
-				retObj.setMsg("未找到目标方法！");
-				return retObj;
-			}
-		}
+        if(!isShell) {
+            if (obj == null) {
+                retObj.setMsg("未找到目标类！");
+                return retObj;
+            } else {
+                Class clazz = obj.getClass();
+                Method method = null;
+                try {
+                    method = clazz.getMethod(scheduleJob.getMethodName(), null);
+                } catch (Exception e) {
+                    // do nothing.....
+                }
+                if (method == null) {
+                    retObj.setMsg("未找到目标方法！");
+                    return retObj;
+                }
+            }
+        }
 		try {
 			taskService.addTask(scheduleJob);
 		} catch (Exception e) {
