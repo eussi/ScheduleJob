@@ -168,3 +168,7 @@ echo
 * 访问路径：
 
 根据配置的路径，访问路径为：_http://ip:prot/ScheduleJob/task/taskList.htm_
+
+* 运行效果
+
+![image](https://github.com/eussi/ScheduleJob/blob/master/src/main/webapp/pic/run.PNG)
