@@ -34,7 +34,7 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
         List<String> records = FileUtils.getFileContent(dbFile);
         StringBuffer content = new StringBuffer();
         for(String s : records) {
-            String id = s.split(",")[0].trim();
+            String id = s.split(Constants.COMMA)[0].trim();
             if(!id.equals(jobId)) {
                 content.append(s);
                 content.append(Constants.NEWLINE);
@@ -88,7 +88,7 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
     public ScheduleJob selectByPrimaryKey(String jobId) {
         List<String> records = FileUtils.getFileContent(dbFile);
         for(String s : records) {
-            String id = s.split(",")[0].trim();
+            String id = s.split(Constants.COMMA)[0].trim();
             if(id.equals(jobId)) {
                return StringUtils.string2Domain(s);
             }
@@ -103,7 +103,7 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
         List<String> records = FileUtils.getFileContent(dbFile);
         StringBuffer content = new StringBuffer();
         for(String s : records) {
-            String id = s.split(",")[0].trim();
+            String id = s.split(Constants.COMMA)[0].trim();
             if(!id.equals(jobId)) {
                 content.append(s);
                 content.append(Constants.NEWLINE);
@@ -136,7 +136,7 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
         List<String> records = FileUtils.getFileContent(dbFile);
         StringBuffer content = new StringBuffer();
         for(String s : records) {
-            String id = s.split(",")[0].trim();
+            String id = s.split(Constants.COMMA)[0].trim();
             if(!id.equals(jobId)) {
                 content.append(s);
                 content.append(Constants.NEWLINE);
@@ -175,7 +175,7 @@ public class ScheduleJobDaoImpl implements DomainDao<ScheduleJob>{
     private Set<String> getJobIds(List<String> records) {
         Set<String> jobIds = new HashSet<String>();
         for(String s : records) {
-            String id = s.split(",")[0].trim();
+            String id = s.split(Constants.COMMA)[0].trim();
             jobIds.add(id);
         }
         return jobIds;
