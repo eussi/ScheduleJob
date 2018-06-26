@@ -29,94 +29,83 @@
 <script src="../assets/js/app.js"></script>
 <script src="../assets/js/taskList.js"></script>
 <script src="../scripts/validateCron.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/H-ui.min.css" />
 </head>
 <body>
-	<div class="admin-content">
-		<div class="am-cf am-padding">
-			<div class="am-fl am-cf">
-				<strong class="am-text-primary am-text-lg">任务列表</strong>
-			</div>
-		</div>
-		<div class="am-g">
-			<div class="am-u-sm-12">
-				<form id="addForm">
-					<table
-						class="am-table am-table-bd am-table-striped admin-content-table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<td>NAME</td>
-								<td>GROUP</td>
-								<td>状态</td>
-								<td>CRON表达式</td>
-								<td>描述</td>
-								<td>是否同步</td>
-								<td>类路径</td>
-								<td>Shell脚本</td>
-								<td>方法名</td>
-								<td>更新CRON</td>
-								<td>操作</td>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="job" items="${taskList}" varStatus="status">
-								<tr>
-									<td><span class="am-badge am-badge-success"
-										style="width: 80px; display: block">${status.index}</span></td>
-									<td>${job.jobName }</td>
-									<td>${job.jobGroup }</td>
-									<td>${job.jobStatus eq 1?"运行中":"已停止"}</td>
-									<td>${job.cronExpression }</td>
-									<td>${job.description }</td>
-									<td>${job.isConcurrent eq 1?"是":"否" }</td>
-									<td>${job.beanClass eq "null" ? "" : job.beanClass}</td>
-									<td>${job.springId  eq "null" ? "" : job.springId}</td>
-									<td>${job.methodName  eq "null" ? "" : job.methodName }</td>
-									<td><span class="am-badge am-badge-success"
-										style="width: 80px; display: block"><a
-											href="javascript:;"
-											onclick="updateCron('${job.jobId}', '${basePath}task/updateCron.htm')">更新</a></span>
-									</td>
-									<td><c:choose>
-											<c:when test="${job.jobStatus=='1' }">
-												<span class="am-badge am-badge-success"
-													style="width: 80px; display: block"><a href="javascript:;"
-													onclick="changeJobStatus('${job.jobId}','${basePath}task/changeJobStatus.htm','stop')">停止</a></span>
-											</c:when>
-											<c:otherwise>
-												<span class="am-badge am-badge-success"
-													style="width: 80px; display: block"><a href="javascript:;"
-													onclick="changeJobStatus('${job.jobId}','${basePath}task/changeJobStatus.htm','start')">开启</a></span>
-											</c:otherwise>
-										</c:choose></td>
-								</tr>
-							</c:forEach>
-							<tr>
-								<td><span class="am-badge am-badge-success"
-									style="width: 80px; display: block">n</span></td>
-								<td><input type="text" name="jobName" id="jobName"/></td>
-								<td><input type="text" name="jobGroup" id="jobGroup"/></td>
-								<td><input type="hidden" name="jobStatus" value="0"/></td>
-								<td><input type="text" name="cronExpression"
-									id="cronExpression"/></td>
-								<td><input type="text" name="description" id="description"/></td>
-								<td><select name="isConcurrent" id="isConcurrent">
-										<option value="1">1</option>
-										<option value="0">0</option>
-								</select></td>
-								<td><input type="text" name="beanClass" id="beanClass"/></td>
-								<td><input type="text" name="springId" id="springId"/></td>
-								<td><input type="text" name="methodName" id="methodName"/></td>
-								<td><input type="button"
-									onclick="add('${basePath}task/add.htm')" value="保存" /></td>
+<nav class="breadcrumb"> 任务列表 </nav>
+<div class="page-container">
+    <div class="mt-20">
+        <form id="addForm">
+            <table class="table table-border table-bordered table-hover table-bg table-sort">
+                <thead>
+                <tr class="text-c">
+                    <th width="3%">ID</th>
+                    <th width="5%">NAME</th>
+                    <th width="5%">GROUP</th>
+                    <th width="7%">状态</th>
+                    <th width="9%">CRON表达式</th>
+                    <th width="10%">描述</th>
+                    <th width="6%">是否同步</th>
+                    <th width="15%">类路径</th>
+                    <th width="21%">Shell脚本</th>
+                    <th width="5%">方法名</th>
+                    <th width="7%">更新CRON</th>
+                    <th width="7%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="job" items="${taskList}" varStatus="status">
+                        <tr class="text-c">
+                            <td><span class="label label-success radius">&nbsp&nbsp&nbsp&nbsp&nbsp${status.index}&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+                            <td>${job.jobName }</td>
+                            <td>${job.jobGroup }</td>
+                            <td>${job.jobStatus eq 1?"运行中":"已停止"}</td>
+                            <td>${job.cronExpression }</td>
+                            <td>${job.description }</td>
+                            <td>${job.isConcurrent eq 1?"是":"否" }</td>
+                            <td>${job.beanClass eq "null" ? "" : job.beanClass}</td>
+                            <td>${job.springId  eq "null" ? "" : job.springId}</td>
+                            <td>${job.methodName  eq "null" ? "" : job.methodName }</td>
+                            <td><span  class="label label-success radius"><a
+                                    href="javascript:;"
+                                    onclick="updateCron('${job.jobId}', '${basePath}task/updateCron.htm')">&nbsp&nbsp&nbsp&nbsp&nbsp更新&nbsp&nbsp&nbsp&nbsp&nbsp</a></span>
+                            </td>
+                            <td><c:choose>
+                                <c:when test="${job.jobStatus=='1' }">
+                                                            <span  class="label label-success radius"><a href="javascript:;"
+                                                                                                         onclick="changeJobStatus('${job.jobId}','${basePath}task/changeJobStatus.htm','stop')">&nbsp&nbsp&nbsp&nbsp&nbsp停止&nbsp&nbsp&nbsp&nbsp&nbsp</a></span>
+                                </c:when>
+                                <c:otherwise>
+                                                            <span  class="label label-success radius"><a href="javascript:;"
+                                                                                                         onclick="changeJobStatus('${job.jobId}','${basePath}task/changeJobStatus.htm','start')">&nbsp&nbsp&nbsp&nbsp&nbsp开启&nbsp&nbsp&nbsp&nbsp&nbsp</a></span>
+                                </c:otherwise>
+                            </c:choose></td>
+                        </tr>
+                    </c:forEach>
+                    <tr>
+                        <td><span class="label label-success radius">&nbsp&nbsp&nbsp&nbsp&nbspn&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+                        <td><input style="width:80px" type="text" name="jobName" id="jobName"/></td>
+                        <td><input style="width:80px" type="text" name="jobGroup" id="jobGroup"/></td>
+                        <td><input style="width:80px"  disabled name="jobStatus"  id="jobStatus" value="0"/></td>
+                        <td><input style="width:100px" type="text" name="cronExpression"
+                                   id="cronExpression"/></td>
+                        <td><input style="width:100px"  type="text" name="description" id="description"/></td>
+                        <td><select  style="width:80px"  name="isConcurrent" id="isConcurrent">
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select></td>
+                        <td><input style="width:200px"  type="text" name="beanClass" id="beanClass"/></td>
+                        <td><input style="width:300px"   type="text" name="springId" id="springId"/></td>
+                        <td><input style="width:80px"   type="text" name="methodName" id="methodName"/></td>
+                        <td colspan="2"><span class="label label-success radius" onclick="add('${basePath}task/add.htm')"><a href="javascript:;">&nbsp&nbsp保存&nbsp&nbsp</a></span></td>
 
-							</tr>
-						</tbody>
-					</table>
-				</form>
-			</div>
-		</div>
-	</div>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
 </body>
 </html>
 

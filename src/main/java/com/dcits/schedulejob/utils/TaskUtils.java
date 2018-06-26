@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Date;
 
 public class TaskUtils {
 	public final static Logger log = Logger.getLogger(TaskUtils.class);
@@ -16,7 +17,7 @@ public class TaskUtils {
 	 * @param scheduleJob
 	 */
 	public static void invokMethod(ScheduleJob scheduleJob) {
-        System.out.println("开始调用[" + scheduleJob.getJobName() + "]任务");
+        System.out.println("开始调用[" + scheduleJob.getJobName() + "]任务,时间[" + new Date().toString() + "]");
 		Object object = null;
 		Class clazz = null;
 //		if (StringUtils.isNotBlank(scheduleJob.getSpringId())) {

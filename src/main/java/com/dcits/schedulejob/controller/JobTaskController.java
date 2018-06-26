@@ -4,7 +4,6 @@ package com.dcits.schedulejob.controller;
 import com.dcits.schedulejob.domain.RetObj;
 import com.dcits.schedulejob.domain.ScheduleJob;
 import com.dcits.schedulejob.service.JobTaskService;
-import com.dcits.schedulejob.utils.SpringUtils;
 import com.dcits.schedulejob.utils.StringUtils;
 import org.apache.log4j.Logger;
 import org.quartz.CronScheduleBuilder;
@@ -86,6 +85,7 @@ public class JobTaskController {
             }
         }
 		try {
+            scheduleJob.setJobStatus("0");//初始化状态设置为0，已停止状态
 			taskService.addTask(scheduleJob);
 		} catch (Exception e) {
 			e.printStackTrace();
