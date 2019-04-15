@@ -1,4 +1,4 @@
-package com.dcits.schedulejob.task;
+package com.eussi.schedulejob.task;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;

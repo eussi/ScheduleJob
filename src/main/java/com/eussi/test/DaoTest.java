@@ -1,11 +1,4 @@
-package com.dcits.test;
-
-import com.dcits.schedulejob.dao.DomainDao;
-import com.dcits.schedulejob.dao.impl.ScheduleJobDaoImpl;
-import com.dcits.schedulejob.domain.ScheduleJob;
-
-import java.util.List;
-import java.util.UUID;
+package com.eussi.test;
 
 /**
  * Created by wangxueming on 2018/6/18.

@@ -1,11 +1,11 @@
-package com.dcits.schedulejob.controller;
+package com.eussi.schedulejob.controller;
 
 
-import com.dcits.schedulejob.domain.RetObj;
-import com.dcits.schedulejob.domain.ScheduleJob;
-import com.dcits.schedulejob.service.JobTaskService;
-import com.dcits.schedulejob.utils.SpringUtils;
-import com.dcits.schedulejob.utils.StringUtils;
+import com.eussi.schedulejob.domain.RetObj;
+import com.eussi.schedulejob.domain.ScheduleJob;
+import com.eussi.schedulejob.service.JobTaskService;
+import com.eussi.schedulejob.utils.SpringUtils;
+import com.eussi.schedulejob.utils.StringUtils;
 import org.apache.log4j.Logger;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.SchedulerException;

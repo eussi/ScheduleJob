@@ -1,7 +1,7 @@
-package com.dcits.schedulejob.utils;
+package com.eussi.schedulejob.utils;
 
-import com.dcits.schedulejob.constants.Constants;
-import com.dcits.schedulejob.domain.ScheduleJob;
+import com.eussi.schedulejob.constants.Constants;
+import com.eussi.schedulejob.domain.ScheduleJob;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

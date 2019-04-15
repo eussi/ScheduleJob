@@ -1,9 +1,9 @@
-package com.dcits.schedulejob.service;
+package com.eussi.schedulejob.service;
 
-import com.dcits.schedulejob.dao.DomainDao;
-import com.dcits.schedulejob.domain.ScheduleJob;
-import com.dcits.schedulejob.task.QuartzJobFactory;
-import com.dcits.schedulejob.task.QuartzJobFactoryDisallowConcurrentExecution;
+import com.eussi.schedulejob.dao.DomainDao;
+import com.eussi.schedulejob.domain.ScheduleJob;
+import com.eussi.schedulejob.task.QuartzJobFactory;
+import com.eussi.schedulejob.task.QuartzJobFactoryDisallowConcurrentExecution;
 import org.apache.log4j.Logger;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;

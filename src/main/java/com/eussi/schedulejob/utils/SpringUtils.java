@@ -1,4 +1,4 @@
-package com.dcits.schedulejob.utils;
+package com.eussi.schedulejob.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

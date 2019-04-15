@@ -1,4 +1,4 @@
-package com.dcits.schedulejob.constants;
+package com.eussi.schedulejob.constants;
 
 /**
  * Created by wangxueming on 2018/6/18.

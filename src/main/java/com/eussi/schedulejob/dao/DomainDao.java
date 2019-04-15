@@ -1,6 +1,4 @@
-package com.dcits.schedulejob.dao;
-
-import com.dcits.schedulejob.domain.ScheduleJob;
+package com.eussi.schedulejob.dao;
 
 import java.util.List;
 

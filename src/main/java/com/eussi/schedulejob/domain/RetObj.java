@@ -1,4 +1,4 @@
-package com.dcits.schedulejob.domain;
+package com.eussi.schedulejob.domain;
 
 public class RetObj {
 	private boolean flag = true;
